@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+
+  <title>Carta para Ela</title>
+
+  <meta name="theme-color" content="#F6F2EB" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Crimson+Text:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="app">
+
+  <!-- Partículas -->
+  <div class="dust"></div>
+
+  <!-- Envelope -->
+  <section id="intro" class="screen active">
+    <div class="envelope" id="envelope">
+      <div class="flap"></div>
+      <div class="letter"></div>
+      <button class="seal" id="seal" aria-label="Abrir carta">M</button>
+    </div>
+  </section>
+
+  <!-- Livro -->
+  <section id="book" class="screen hidden">
+
+    <!-- Página 1 -->
+    <div class="page active" id="page1">
+      <div class="paper">
+
+        <h1>Carta para Ela</h1>
+
+        <div class="subtitle">Feliz aniversário, meu amor</div>
+
+        <p>
+          Algumas cartas não são escritas para serem lidas depressa.
+        </p>
+
+        <p>
+          Elas são feitas para serem abertas lentamente, como quem encontra uma lembrança guardada há muito tempo.
+        </p>
+
+        <p>
+          Hoje eu quero te entregar a nossa história em forma de papel, silêncio e amor.
+        </p>
+
+        <div class="center">
+          <button class="btn next" data-next="page2">
+            Continue folheando nossas memórias
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Página 2 -->
+    <div class="page" id="page2">
+      <div class="paper">
+
+        <div class="chapter">Desde que nossas vidas se encontraram</div>
+
+        <div class="counter">
+
+          <div class="counter-card">
+            <div class="counter-value" id="years">0</div>
+            <div class="counter-label">Anos</div>
+          </div>
+
+          <div class="counter-card">
+            <div class="counter-value" id="months">0</div>
+            <div class="counter-label">Meses</div>
+          </div>
+
+          <div class="counter-card">
+            <div class="counter-value" id="days">0</div>
+            <div class="counter-label">Dias</div>
+          </div>
+
+          <div class="counter-card">
+            <div class="counter-value" id="hours">0</div>
+            <div class="counter-label">Horas</div>
+          </div>
+
+        </div>
+
+        <p class="quote">
+          Cada segundo ao teu lado tornou a minha vida mais bonita.
+        </p>
+
+        <div class="page-actions">
+          <button class="btn secondary prev" data-prev="page1">
+            Voltar
+          </button>
+
+          <button class="btn next" data-next="page3">
+            Próxima página
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Página 3 -->
+    <div class="page" id="page3">
+      <div class="paper">
+
+        <div class="chapter">Minha carta para você</div>
+
+        <div class="letter-text">
+
+          <p>Feliz aniversário amor da minha vida,</p>
+
+          <p>
+            queria te dizer que nada mais especial que comemorar o dia que a pessoa mais especial pra mim nasceu, queria estar agora do seu lado quando batesse meia noite, mas sei que daqui um tempinho a gente ja vai estar juntas vivendo cada segundo desse dia.
+          </p>
+
+          <p>
+            Eu sou grata pela tua vida, você me ensina como amar, cuidar, amadurecer e melhorar por alguém, me ensina como a vida é bonita mesmo depois de uma tempestade, você me faz querer viver, me mostra um caminho de esperança e me da vontade de fazer o mundo um lugar melhor.
+          </p>
+
+          <p>
+            Não consigo por em palavras todos as suas qualidades, você é incrível, inteligente, engraçada, autentica, n tem medo de ser quem é, corajosa mesmo que n se sinta assim, busca sempre fazer o certo e o possível pra ajudar a todos que estão na tua volta, é linda e completamente perfeita e eu posso dizer que te amo por dentro e por fora, amo cada pedacinho de ti, tua manchinha na perna, teu sorriso apaixonante, teus olhos que brilham, teu coração que sente tudo, teus ouvidos que me ouvem, tuas mãos que escrevem as coisas mais bonitas, te amo por inteira.
+          </p>
+
+          <p>
+            Que hoje tu se sinta amada por todos que estão a tua volta, te desejo as coisas mais belas e poéticas da vida, te desejo alegria e vontade de viver.
+          </p>
+
+          <p>
+            Por fim e não menos importante, desejo que passemos mais um milhão de anos juntas, desejo que comemoremos esta data mais um milhão de vezes, com nossos amigos, com filhos, gatos, cachorros e o que mais você quiser.
+          </p>
+
+          <p>Eu te amo até o fim!</p>
+
+        </div>
+
+        <div class="page-actions">
+          <button class="btn secondary prev" data-prev="page2">
+            Voltar
+          </button>
+
+          <button class="btn next" data-next="page4">
+            Última página
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Página 4 -->
+    <div class="page" id="page4">
+      <div class="paper final-page">
+
+        <div class="final-content">
+
+          <h2>Em todas as vidas, eu escolheria você.</h2>
+
+          <div class="signature">
+            Com todo o meu amor
+          </div>
+
+        </div>
+
+        <div class="center">
+          <button class="btn restart" id="restartBtn">
+            Fechar a carta
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+  </section>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

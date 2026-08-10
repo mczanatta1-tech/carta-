@@ -1,192 +1,284 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Carta para Ela</title>
 
-  <title>Carta para Ela</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Crimson+Text:wght@400;600&display=swap" rel="stylesheet">
 
-  <meta name="theme-color" content="#F6F2EB" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+<style>
+:root{
+  --cream:#F6F2EB;
+  --beige:#E9DED2;
+  --rose:#B57B7B;
+  --brown:#7A5C58;
+  --gold:#C8A97E;
+}
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Crimson+Text:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+*{margin:0;padding:0;box-sizing:border-box;}
 
-  <link rel="stylesheet" href="style.css">
+body{
+  background:var(--cream);
+  font-family:"Crimson Text", serif;
+  color:var(--brown);
+  overflow:hidden;
+}
+
+.screen{
+  position:fixed;
+  inset:0;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:28px;
+  transition:opacity .8s ease;
+}
+
+.hidden{
+  opacity:0;
+  pointer-events:none;
+}
+
+.envelope{
+  width:300px;
+  height:210px;
+  background:linear-gradient(180deg,#f8f3ed,#eee3d8);
+  border-radius:18px;
+  position:relative;
+  box-shadow:0 20px 50px rgba(0,0,0,.15);
+}
+
+.flap{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:105px;
+  background:#eadfd3;
+  clip-path:polygon(0 0,100% 0,50% 100%);
+  transform-origin:top;
+  transition:transform 1.5s ease;
+}
+
+.letter{
+  position:absolute;
+  left:50%;
+  top:35px;
+  transform:translateX(-50%);
+  width:88%;
+  height:170px;
+  background:#fffaf5;
+  border-radius:12px;
+  transition:transform 1.6s ease;
+}
+
+.seal{
+  position:absolute;
+  left:50%;
+  top:78px;
+  transform:translateX(-50%);
+  width:68px;
+  height:68px;
+  border-radius:50%;
+  border:none;
+  background:radial-gradient(circle at 30% 30%,#d5a4a4,var(--rose));
+  color:#fff;
+  font-family:"Cormorant Garamond", serif;
+  font-size:30px;
+  cursor:pointer;
+}
+
+.open .flap{
+  transform:rotateX(180deg);
+}
+
+.open .letter{
+  transform:translate(-50%,-110px);
+}
+
+.book{
+  position:fixed;
+  inset:0;
+  padding:20px;
+  display:none;
+}
+
+.page{
+  width:100%;
+  max-width:420px;
+  height:calc(100vh - 40px);
+  margin:auto;
+  background:#fffaf5;
+  border-radius:28px;
+  padding:32px 24px;
+  overflow:auto;
+  box-shadow:0 20px 50px rgba(0,0,0,.12);
+  display:none;
+}
+
+.page.active{
+  display:block;
+}
+
+h1{
+  font-family:"Cormorant Garamond", serif;
+  font-size:46px;
+  text-align:center;
+  margin-bottom:8px;
+}
+
+.subtitle{
+  text-align:center;
+  color:#9b817c;
+  margin-bottom:30px;
+}
+
+.chapter{
+  font-family:"Cormorant Garamond", serif;
+  font-size:34px;
+  margin-bottom:20px;
+}
+
+p{
+  font-size:22px;
+  line-height:1.9;
+  margin-bottom:18px;
+}
+
+.counter{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:16px;
+  margin:30px 0;
+}
+
+.card{
+  background:#faf5ef;
+  border-radius:18px;
+  padding:20px;
+  text-align:center;
+}
+
+.num{
+  font-family:"Cormorant Garamond", serif;
+  font-size:38px;
+}
+
+.label{
+  font-size:13px;
+  color:#8b726d;
+}
+
+.btn{
+  width:100%;
+  padding:16px;
+  border:none;
+  border-radius:999px;
+  background:var(--rose);
+  color:#fff;
+  font-size:16px;
+  margin-top:28px;
+  cursor:pointer;
+}
+
+.final{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  height:100%;
+}
+
+.final h2{
+  font-family:"Cormorant Garamond", serif;
+  font-size:42px;
+  line-height:1.4;
+}
+
+.signature{
+  margin-top:24px;
+  font-family:"Cormorant Garamond", serif;
+  font-size:28px;
+  color:var(--rose);
+}
+</style>
 </head>
 
 <body>
 
-<div class="app">
+<div id="intro" class="screen">
+  <div class="envelope" id="envelope">
+    <div class="flap"></div>
+    <div class="letter"></div>
+    <button class="seal" id="seal">M</button>
+  </div>
+</div>
 
-  <!-- Partículas -->
-  <div class="dust"></div>
+<div id="book" class="book">
 
-  <!-- Envelope -->
-  <section id="intro" class="screen active">
-    <div class="envelope" id="envelope">
-      <div class="flap"></div>
-      <div class="letter"></div>
-      <button class="seal" id="seal" aria-label="Abrir carta">M</button>
-    </div>
-  </section>
+<div class="page active" id="p1">
+<h1>Carta para Ela</h1>
+<div class="subtitle">Feliz aniversário, meu amor</div>
 
-  <!-- Livro -->
-  <section id="book" class="screen hidden">
+<p>Algumas cartas não são feitas para serem lidas depressa.</p>
 
-    <!-- Página 1 -->
-    <div class="page active" id="page1">
-      <div class="paper">
+<p>Elas são feitas para serem abertas lentamente, como quem encontra uma lembrança guardada há muito tempo.</p>
 
-        <h1>Carta para Ela</h1>
+<p>Hoje eu quero te entregar uma pequena parte do que sinto por você.</p>
 
-        <div class="subtitle">Feliz aniversário, meu amor</div>
+<button class="btn" onclick="showPage('p2')">
+Continue folheando nossas memórias
+</button>
+</div>
 
-        <p>
-          Algumas cartas não são escritas para serem lidas depressa.
-        </p>
+<div class="page" id="p2">
 
-        <p>
-          Elas são feitas para serem abertas lentamente, como quem encontra uma lembrança guardada há muito tempo.
-        </p>
+<div class="chapter">Desde que nossas vidas se encontraram</div>
 
-        <p>
-          Hoje eu quero te entregar a nossa história em forma de papel, silêncio e amor.
-        </p>
+<div class="counter">
 
-        <div class="center">
-          <button class="btn next" data-next="page2">
-            Continue folheando nossas memórias
-          </button>
-        </div>
+<div class="card">
+<div class="num" id="years">0</div>
+<div class="label">Anos</div>
+</div>
 
-      </div>
-    </div>
+<div class="card">
+<div class="num" id="months">0</div>
+<div class="label">Meses</div>
+</div>
 
-    <!-- Página 2 -->
-    <div class="page" id="page2">
-      <div class="paper">
+<div class="card">
+<div class="num" id="days">0</div>
+<div class="label">Dias</div>
+</div>
 
-        <div class="chapter">Desde que nossas vidas se encontraram</div>
-
-        <div class="counter">
-
-          <div class="counter-card">
-            <div class="counter-value" id="years">0</div>
-            <div class="counter-label">Anos</div>
-          </div>
-
-          <div class="counter-card">
-            <div class="counter-value" id="months">0</div>
-            <div class="counter-label">Meses</div>
-          </div>
-
-          <div class="counter-card">
-            <div class="counter-value" id="days">0</div>
-            <div class="counter-label">Dias</div>
-          </div>
-
-          <div class="counter-card">
-            <div class="counter-value" id="hours">0</div>
-            <div class="counter-label">Horas</div>
-          </div>
-
-        </div>
-
-        <p class="quote">
-          Cada segundo ao teu lado tornou a minha vida mais bonita.
-        </p>
-
-        <div class="page-actions">
-          <button class="btn secondary prev" data-prev="page1">
-            Voltar
-          </button>
-
-          <button class="btn next" data-next="page3">
-            Próxima página
-          </button>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- Página 3 -->
-    <div class="page" id="page3">
-      <div class="paper">
-
-        <div class="chapter">Minha carta para você</div>
-
-        <div class="letter-text">
-
-          <p>Feliz aniversário amor da minha vida,</p>
-
-          <p>
-            queria te dizer que nada mais especial que comemorar o dia que a pessoa mais especial pra mim nasceu, queria estar agora do seu lado quando batesse meia noite, mas sei que daqui um tempinho a gente ja vai estar juntas vivendo cada segundo desse dia.
-          </p>
-
-          <p>
-            Eu sou grata pela tua vida, você me ensina como amar, cuidar, amadurecer e melhorar por alguém, me ensina como a vida é bonita mesmo depois de uma tempestade, você me faz querer viver, me mostra um caminho de esperança e me da vontade de fazer o mundo um lugar melhor.
-          </p>
-
-          <p>
-            Não consigo por em palavras todos as suas qualidades, você é incrível, inteligente, engraçada, autentica, n tem medo de ser quem é, corajosa mesmo que n se sinta assim, busca sempre fazer o certo e o possível pra ajudar a todos que estão na tua volta, é linda e completamente perfeita e eu posso dizer que te amo por dentro e por fora, amo cada pedacinho de ti, tua manchinha na perna, teu sorriso apaixonante, teus olhos que brilham, teu coração que sente tudo, teus ouvidos que me ouvem, tuas mãos que escrevem as coisas mais bonitas, te amo por inteira.
-          </p>
-
-          <p>
-            Que hoje tu se sinta amada por todos que estão a tua volta, te desejo as coisas mais belas e poéticas da vida, te desejo alegria e vontade de viver.
-          </p>
-
-          <p>
-            Por fim e não menos importante, desejo que passemos mais um milhão de anos juntas, desejo que comemoremos esta data mais um milhão de vezes, com nossos amigos, com filhos, gatos, cachorros e o que mais você quiser.
-          </p>
-
-          <p>Eu te amo até o fim!</p>
-
-        </div>
-
-        <div class="page-actions">
-          <button class="btn secondary prev" data-prev="page2">
-            Voltar
-          </button>
-
-          <button class="btn next" data-next="page4">
-            Última página
-          </button>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- Página 4 -->
-    <div class="page" id="page4">
-      <div class="paper final-page">
-
-        <div class="final-content">
-
-          <h2>Em todas as vidas, eu escolheria você.</h2>
-
-          <div class="signature">
-            Com todo o meu amor
-          </div>
-
-        </div>
-
-        <div class="center">
-          <button class="btn restart" id="restartBtn">
-            Fechar a carta
-          </button>
-        </div>
-
-      </div>
-    </div>
-
-  </section>
+<div class="card">
+<div class="num" id="hours">0</div>
+<div class="label">Horas</div>
+</div>
 
 </div>
 
-<script src="script.js"></script>
+<p style="text-align:center;font-style:italic;">
+Cada segundo ao teu lado tornou a minha vida mais bonita.
+</p>
 
-</body>
-</html>
+<button class="btn" onclick="showPage('p3')">
+Ler a minha carta
+</button>
+</div>
+
+<div class="page" id="p3">
+
+<div class="chapter">Minha carta para você</div>
+
+<p>Feliz aniversário amor da minha vida,
+queria te dizer que nada mais especial que comemorar o dia que a pessoa mais especial pra mim nasceu, queria estar agora do seu lado quando batesse meia noite, mas sei que daqui um tempinho a gente ja vai estar juntas vivendo cada segundo desse dia.</p>
+
+<p>Eu sou grata pela tua vida, você me ensina como amar, cuidar, amadurecer e melhorar por alguém, me ensina como a vida é bonita mesmo depois de uma tempestade, você me faz querer viver, me mostra um caminho de esperança e me da vontade de fazer o mundo um lugar melhor.</p>
+
+<p>Não consigo por em palavras todos as suas qualidades, você é incrível, inteligente, engraçada, autentica, n tem medo de ser quem é, corajosa mesmo que n se sinta assim, busca sempre fazer o certo e o possível pra ajudar a todos que estão na tua volta, é linda e
